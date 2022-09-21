@@ -33,6 +33,8 @@ extern int bone;
 bool thirdperson = false;
 bool chargerifle = false;
 bool shooting = false;
+int resolution_width = 3440;
+int resolution_height = 1440;
 
 bool actions_t = false;
 bool esp_t = false;
@@ -383,12 +385,12 @@ static void EspLoop()
 						}
 						
 						Vector bs = Vector();
-						WorldToScreen(EntityPosition, m.matrix, 1920, 1080, bs);
+						WorldToScreen(EntityPosition, m.matrix, resolution_width, resolution_height, bs);
 						if (bs.x > 0 && bs.y > 0)
 						{
 							Vector hs = Vector();
 							Vector HeadPosition = Target.getBonePositionByHitbox(0);
-							WorldToScreen(HeadPosition, m.matrix, 1920, 1080, hs);
+							WorldToScreen(HeadPosition, m.matrix, resolution_width, resolution_height, hs);
 							float height = abs(abs(hs.y) - abs(bs.y));
 							float width = height / 2.0f;
 							float boxMiddle = bs.x - (width / 2.0f);
@@ -458,12 +460,12 @@ static void EspLoop()
 						}
 
 						Vector bs = Vector();
-						WorldToScreen(EntityPosition, m.matrix, 1920, 1080, bs);
+						WorldToScreen(EntityPosition, m.matrix, resolution_width, resolution_height, bs);
 						if (bs.x > 0 && bs.y > 0)
 						{
 							Vector hs = Vector();
 							Vector HeadPosition = Target.getBonePositionByHitbox(0);
-							WorldToScreen(HeadPosition, m.matrix, 1920, 1080, hs);
+							WorldToScreen(HeadPosition, m.matrix, resolution_width, resolution_height, hs);
 							float height = abs(abs(hs.y) - abs(bs.y));
 							float width = height / 2.0f;
 							float boxMiddle = bs.x - (width / 2.0f);
@@ -709,12 +711,12 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	const char* cl_proc = "client_ap.exe";
+	const char* cl_proc = "AceAttorney.exe";
 	const char* ap_proc = "R5Apex.exe";
 	//const char* ap_proc = "EasyAntiCheat_launcher.exe";
 
 	//Client "add" offset
-	uint64_t add_off = 0x3f880;
+	uint64_t add_off = 0x1de5c0;
 
 	std::thread aimbot_thr;
 	std::thread esp_thr;
